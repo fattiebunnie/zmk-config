@@ -1,4 +1,4 @@
-if KEYBOARD65
+if SHIELD_KEYBOARD65
 
 config ZMK_KEYBOARD_NAME
     default "Keyboard65"
