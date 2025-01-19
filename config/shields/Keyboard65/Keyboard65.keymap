@@ -1,0 +1,109 @@
+/*
+ * Copyright (c) 2021 Nick Winans
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+// --------------------------------------------------------------------------------------------------------
+// | ESC |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |  BSPC |  | Ins | PgU | |
+// | TAB  |  Q  |  W  |  E  |  R  |  T  |  Y  |  U  |  I  |  O  |  P  |  [  |  ]  | "|"  |  | Del | PgD | |
+// | CAPS  |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |   ENTER   |                |
+// |  SHIFT  |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  |     SHIFT     |  |  UP |       |
+// |  CTL  |  WIN  |  ALT  |            SPACE              |  ALT  |  Fn  |  CTL  |   | LFT | DWN | RGHT| |
+// --------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------
+// | R0C0| R1C0| R0C1| R1C1| R0C2| R1C2| R0C3| R1C3| R0C4| R1C4| R0C5| R1C5| R0C6|  R1C6 |  | R4C6| R6C6| |
+// | R2C0 | R3C0| R2C1| R3C1| R2C2| R3C2| R2C3| R3C3| R2C4| R3C4| R2C5| R3C5| R2C6| R3C6 |  | R7C6| R8C6| |
+// | R4C0  | R5C0| R4C1| R5C1| R4C2| R5C2| R4C3| R5C3| R4C4| R5C4| R4C5| R5C5|    R5C6   |                |
+// |  R6C0   | R7C0| R6C1| R7C1| R6C2| R7C2| R6C3| R7C3| R6C4| R7C4| R6C5|      R7C5     |  | R8C5|       |
+// |  R8C0 |  R9C0 |  R8C1 |             R9C1              |  R8C2 | R8C3 |  R9C3 |   | R8C4| R9C4| R9C5| |
+// --------------------------------------------------------------------------------------------------------
+// prettify
+// ----------------------------------------------
+// | ESC |  2  |  4  |  6  |  8  |  0  |  =  |  |
+// |  1  |  3  |  5  |  7  |  9  |  -  | BSPC|  |
+// | TAB |  W  |  R  |  Y  |  I  |  P  |  ]  |  |
+// |  Q  |  E  |  T  |  U  |  O  |  [  | "|" |  |
+// | CAPS|  S  |  F  |  H  |  K  |  ;  | Ins |  |
+// |  A  |  D  |  G  |  J  |  L  |  '  |ENTER|  |
+// |SHIFT|  X  |  V  |  N  |  ,  |  /  | PgU |  |
+// |  Z  |  C  |  B  |  M  |  .  |SHIFT| Del |  |
+// | CTL | ALT | ALT |  Fn | LFT |  UP | PgD |  |
+// | WIN |SPACE| KNOB| CTL | DWN | RGHT|        |
+// ----------------------------------------------
+        bindings = <
+    &gresc      &kp N2      &kp N4      &kp N6              &kp N8      &kp N0      &kp EQUAL
+    &kp N1      &kp N3      &kp N5      &kp N7              &kp N9      &kp MINUS   &kp BSPC
+    &kp TAB     &kp W       &kp R       &kp Y               &kp I       &kp P       &kp RBKT
+    &kp Q       &kp E       &kp T       &kp U               &kp O       &kp LBKT    &kp BSLH
+    &kp CLCK    &kp S       &kp F       &kp H               &kp K       &kp SEMI    &kp INS
+    &kp A       &kp D       &kp G       &kp J               &kp L       &kp SQT     &kp RET
+    &kp LSHFT   &kp X       &kp V       &kp N               &kp COMMA   &kp FSLH    &kp PG_UP
+    &kp Z       &kp C       &kp B       &kp M               &kp DOT     &kp RSHFT   &kp DEL
+    &kp LCTRL   &kp LALT    &kp RALT    &mo 1               &kp LEFT    &kp UP      &kp PG_DN
+    &kp LGUI    &kp SPACE   &kp RGUI    &kp RCTRL           &kp DOWN    &kp RIGHT     
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+    
+
+        num_layer {
+// ------------------------------------------------------------------------------------------------
+// | BT CLR | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F10  | F11 | F12 | EFFECT REV |
+// |  BT 1   |   |  UP |   | HUEUP | SATUP | BRIUP | SPDUP |   |     |    |     |     |           |
+// |   BT 2   | LT |  DN  | RT | HUEDN | SATDN | BRIDN | SPDDN |   |     |   |     |  EFFECT FORW |
+// |    BT 3     |     |      |      |     |     |     |     |     |     |     |                  |
+// |   BT 4  |      |      |             TOG RGB                | PRT SCR |       |       |  DEL  |
+// ------------------------------------------------------------------------------------------------
+//            bindings = <
+//    &bt BT_CLR   &kp F1    &kp F2    &kp F3  &kp F4           &kp F5          &kp F6          &kp F7          &kp F8   &kp F9   &kp F10  &kp F11 &kp F12  &rgb_ug RGB_EFR
+//    &bt BT_SEL 0  &trans    &kp UP    &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI  &trans   &trans   &trans   &trans  &trans          &trans
+//    &bt BT_SEL 1   &kp LEFT  &kp DOWN  &kp RIGHT &rgb_ug RGB_HUD &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &trans   &trans   &trans   &trans        &rgb_ug RGB_EFF
+//    &bt BT_SEL 2    &trans    &trans    &trans   &trans          &trans          &trans          &trans          &trans   &trans   &trans                          &trans
+//    &bt BT_SEL 3  &trans   &trans                            &rgb_ug RGB_TOG                                      &kp PSCRN      &trans      &trans               &kp DEL
+//            >;
+// --------------------------------------------------------------------------------------------------------
+// |BTCLR|  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |  BSPC |  |     |     | |
+// |      | BT0 | BT1 | BT2 | BT3 |     |     |     |     |     |     |     |     |      |  |     |     | |
+// |       |     |     |     |     |     |     |PSCRN|SCRLK| Pus |     |     |           |                |
+// |         |     |     |     |     |     |     |     | Home| End |     |               |  |     |       |
+// |       |       |       |                               |       |      |       |   |     |     |     | |
+// --------------------------------------------------------------------------------------------------------
+// prettify
+// ----------------------------------------------
+// |BTCLR|  F2 |  F4 |  F6 |  F8 | F10 | F12 |  |
+// |  F1 |  F3 |  F5 |  F7 |  F9 | F11 |     |  |
+// |     | BT1 | BT3 |     |     |     |     |  |
+// | BT0 | BT2 |     |     |     |     |     |  |
+// |     |     |     |     |SCRLK|     |     |  |
+// |     |     |     |PSCRN| Pus |     |     |  |
+// |     |     |     |     | Home|     |     |  |
+// |     |     |     |     | End |     |     |  |
+// |     |     |     |     | PREV|VOLUP|     |  |
+// |     |     |     |     |VOLDN| NEXT|        |
+// ----------------------------------------------
+            bindings = <
+    &bt BT_CLR      &kp F2          &kp F4          &kp F6     &kp F8          &kp F10         &kp F12
+    &kp F1          &kp F3          &kp F5          &kp F7     &kp F9          &kp F11         &trans 
+    &trans          &kp BT_SEL 1    &kp BT_SEL 3    &trans     &trans          &trans          &trans
+    &kp BT_SEL 0    &kp BT_SEL 2    &trans          &trans     &trans          &trans          &trans
+    &trans          &trans          &trans          &trans     &kp SLCK        &trans          &trans
+    &trans          &trans          &trans          &kp PSCRN  &kp PAUSE_BREAK &trans          &trans
+    &trans          &trans          &trans          &trans     &kp HOME        &trans          &trans
+    &trans          &trans          &trans          &trans     &kp END         &trans          &trans
+    &trans          &trans          &trans          &trans     &kp LEFT        &kp C_VOL_UP    &trans
+    &trans          &trans          &trans          &trans     &kp C_VOL_DN    &kp C_NEXT     
+            >;
+        };
+    };
+};
