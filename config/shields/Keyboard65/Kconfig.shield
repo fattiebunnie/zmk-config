@@ -1,2 +1,2 @@
 config SHIELD_KEYBOARD65
-    def_bool $(shields_list_contains, Keyboard65)
+    def_bool $(shields_list_contains,Keyboard65)
