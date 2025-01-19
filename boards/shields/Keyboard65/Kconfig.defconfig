@@ -34,4 +34,4 @@ endchoice
 endif # LVGL
 
 
-endif # KEYBOARD65
+endif # SHIELD_KEYBOARD65
