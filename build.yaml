@@ -22,4 +22,4 @@
 
 include:
   - board: nice_nano_v2
-    shield: Keyboard65
+    shield: SHIELD_KEYBOARD65
